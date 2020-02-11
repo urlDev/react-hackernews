@@ -1,0 +1,35 @@
+/*** fonts ****/
+
+$montserrat: 'Montserrat',
+sans-serif;
+$bilbo: 'Bilbo Swash Caps',
+cursive;
+$kanit: 'Kanit',
+sans-serif;
+
+/*** colors ***/
+
+$orange: #FF5200;
+$blue: #15202B;
+$black: #0A0909;
+$white: #FDFFFC;
+$secondWhite: rgb(181, 180, 187);
+$turq: #114B5F;
+
+/**** *****/
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: $white;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}

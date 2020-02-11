@@ -1,0 +1,13 @@
+@import "../../index.scss";
+.verticalNav {
+    font-family: $montserrat;
+    font-size: 2em;
+    .nav-link {
+        color: $blue;
+        padding: 1em 0;
+        // i {
+        //     margin-right: 1em;
+        //     width: calc(100%-1em);
+        // }
+    }
+}

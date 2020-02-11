@@ -1,0 +1,40 @@
+@import "../../index.scss";
+.search {
+    .form {
+        position: absolute;
+        &-inline {
+            font-size: 2em;
+            width: 100%;
+            .form-control {
+                font-family: $montserrat;
+                font-size: 1em;
+                width: calc(100% - 2em);
+                margin: 0;
+                background: none;
+                color: $blue;
+                padding: 10px 10px 10px 10px;
+                display: block;
+                border: none;
+                border-radius: 0;
+                text-transform: capitalize;
+                // border-bottom: 1px solid #28214d;
+                &::placeholder {
+                    color: $blue;
+                    font-family: $montserrat;
+                }
+                &:focus {
+                    box-shadow: none;
+                }
+                input[type="text"] {
+                    letter-spacing: 0.3em;
+                }
+            }
+            button {
+                background: $white;
+                border: none;
+                font-size: 1em;
+                color: $blue;
+            }
+        }
+    }
+}

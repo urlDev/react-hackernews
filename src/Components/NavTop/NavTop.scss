@@ -1,0 +1,19 @@
+@import "../../index.scss";
+.navTop {
+    font-family: $montserrat;
+    .navbar {
+        background: $white !important;
+        &-brand {
+            .brandImage {
+                width: 10em;
+            }
+        }
+    }
+    .nav {
+        &-link {
+            font-size: 2em;
+            color: $blue !important;
+            font-weight: bold;
+        }
+    }
+}

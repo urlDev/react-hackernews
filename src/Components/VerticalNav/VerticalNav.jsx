@@ -1,7 +1,7 @@
 import React, { Component } from "react";
+import SearchResults from "../SearchResults/SearchResults";
 
 import "./VerticalNav.scss";
-
 
 //https://stackoverflow.com/questions/27969485/space-between-link-and-icon-fontawesome
 //to stack all the nav elements in same line
@@ -30,7 +30,7 @@ class VerticalNav extends Component {
                 aria-controls="v-pills-home"
                 aria-selected="true"
               >
-               <i className="fas fa-home fa-fw mr-3"></i>All
+                <i className="fas fa-home fa-fw mr-3"></i>All
               </a>
               <a
                 className="nav-link"
@@ -41,7 +41,7 @@ class VerticalNav extends Component {
                 aria-controls="v-pills-profile"
                 aria-selected="false"
               >
-                <i className="fas fa-bolt fa-fw mr-3"></i>Hot 
+                <i className="fas fa-bolt fa-fw mr-3"></i>Hot
               </a>
               <a
                 className="nav-link"
@@ -79,40 +79,7 @@ class VerticalNav extends Component {
             </div>
           </div>
           <div className="col-9">
-            <div className="tab-content" id="v-pills-tabContent">
-              <div
-                className="tab-pane fade show active"
-                id="v-pills-home"
-                role="tabpanel"
-                aria-labelledby="v-pills-home-tab"
-              >
-                ...
-              </div>
-              <div
-                className="tab-pane fade"
-                id="v-pills-profile"
-                role="tabpanel"
-                aria-labelledby="v-pills-profile-tab"
-              >
-                ...
-              </div>
-              <div
-                className="tab-pane fade"
-                id="v-pills-messages"
-                role="tabpanel"
-                aria-labelledby="v-pills-messages-tab"
-              >
-                ...
-              </div>
-              <div
-                className="tab-pane fade"
-                id="v-pills-settings"
-                role="tabpanel"
-                aria-labelledby="v-pills-settings-tab"
-              >
-                ...
-              </div>
-            </div>
+            <SearchResults />
           </div>
         </div>
       </div>

@@ -10,16 +10,14 @@ class Search extends Component {
   render() {
     return (
       <div className="container search p-0">
-        <form class="form-inline my-2 my-lg-0">
+        <form className="form-inline my-2 my-lg-0">
           <input
             className="form-control mr-sm-2"
             type="search"
             placeholder="Search"
             aria-label="Search"
           />
-          <button class="btn  my-2 my-sm-0" type="submit">
-            <i className="fas fa-search "></i>
-          </button>
+          <i className="fas fa-search "></i>
         </form>
       </div>
     );

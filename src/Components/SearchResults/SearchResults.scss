@@ -1,0 +1,23 @@
+@import "../../index.scss";
+.SearchResults {
+    text-align: left;
+    .story {
+        padding: 1rem 2rem;
+        color: $blue;
+        &__bottom {
+            font-size: 1rem;
+            &-user {}
+            &-link {
+                a {
+                    color: $orange;
+                }
+            }
+        }
+    }
+    .story:first-child {
+        padding-top: 0;
+    }
+    .fa-star {
+        color: $orange;
+    }
+}

@@ -13,7 +13,7 @@ class NewsProvider extends Component {
     super(props);
     this.state = {
       all: [],
-      news: {}
+      news: []
     };
   }
 
@@ -21,22 +21,22 @@ class NewsProvider extends Component {
     this.getStoryIds();
   }
 
-  // componentDidUpdate() {
-  //   this.getStory();
-  // }
-
+//first, we get all story data from state(they are ids)
+//then we iterate through them and fetch data for each id 
+//then we save them to the news state, with existing state
+//make it an array so we can iterate through them
+//💪🏽
   getStory = () => {
-    this.state.all.slice(0, 10).map(id => {
+    this.state.all.slice(0, 20).map(id => {
       axios.get(`${storyUrl + id}.json`).then(({ data }) =>
-      this.setState(
-        {
-          news: data
-        },
-        () => console.log(this.state.news)
-      )
-    );
-    })
-    
+        this.setState(
+          {
+            news: [...this.state.news, data]
+          },
+          () => console.log(this.state.news)
+        )
+      );
+    });
   };
 
   getStoryIds = async () => {
@@ -49,7 +49,7 @@ class NewsProvider extends Component {
             all: data
           },
           () => {
-            this.getStory()
+            this.getStory();
           }
         )
       )

@@ -2,7 +2,9 @@
 .verticalNav {
     font-family: $montserrat;
     font-size: 2em;
+    padding-bottom: 20rem;
     .nav-link {
+        cursor: pointer;
         color: $blue;
         padding: 1em 0;
         // i {
@@ -12,5 +14,10 @@
     }
     .nav-link:first-child {
         padding-top: 0;
+    }
+    .clicked {
+        color: $orange !important;
+        font-weight: bold;
+        // text-shadow: 1px 1px $blue;
     }
 }

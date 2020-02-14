@@ -1,5 +1,10 @@
 import React, { Component } from "react";
 import SearchResults from "../SearchResults/SearchResults";
+import SearchResultsHot from "../SearchResultsHot/SearchResultsHot";
+import AskHN from "../AskHN/AskHN";
+import ShowHN from "../ShowHN/ShowHN";
+import Jobs from "../Jobs/Jobs";
+
 import { NewsConsumer } from "../../Context";
 
 import "./VerticalNav.scss";
@@ -17,7 +22,6 @@ class VerticalNav extends Component {
     return (
       <NewsConsumer>
         {value => {
-        
           return (
             <div className="container verticalNav mt-5">
               <div className="row">
@@ -29,57 +33,67 @@ class VerticalNav extends Component {
                     aria-orientation="vertical"
                   >
                     <a
-                      className="nav-link active "
-                      id="v-pills-home-tab"
-                      data-toggle="pill"
-                      href="#v-pills-home"
-                      role="tab"
-                      aria-controls="v-pills-home"
-                      aria-selected="true"
+                      className={
+                      value.all.length > 0
+                        ? "nav-link clicked"
+                        : "nav-link"
+                    }
+                      onClick={() => {
+                        value.getStoryIds();
+                        value.clearVisible();
+                      }}
                     >
                       <i className="fas fa-home fa-fw mr-3"></i>All
                     </a>
                     <a
-                      className="nav-link"
-                      id="v-pills-profile-tab"
-                      data-toggle="pill"
-                      href="#v-pills-profile"
-                      role="tab"
-                      aria-controls="v-pills-profile"
-                      aria-selected="false"
+                      className={
+                      value.hot.length > 0
+                        ? "nav-link clicked"
+                        : "nav-link"
+                    }
+                      onClick={() => {
+                        value.getTopIds();
+                        value.clearVisible();
+                      }}
                     >
-                      <i className="fas fa-bolt fa-fw mr-3"></i>Hot
+                      <i className="fas fa-fire fa-fw mr-3"></i>Hot
                     </a>
                     <a
-                      className="nav-link"
-                      id="v-pills-messages-tab"
-                      data-toggle="pill"
-                      href="#v-pills-messages"
-                      role="tab"
-                      aria-controls="v-pills-messages"
-                      aria-selected="false"
+                      className={
+                      value.show.length > 0
+                        ? "nav-link clicked"
+                        : "nav-link"
+                    }
+                      onClick={() => {
+                        value.getShowIds();
+                        value.clearVisible();
+                      }}
                     >
                       <i className="fas fa-volume-up fa-fw mr-3"></i>Show HN
                     </a>
                     <a
-                      className="nav-link"
-                      id="v-pills-messages-tab"
-                      data-toggle="pill"
-                      href="#v-pills-messages"
-                      role="tab"
-                      aria-controls="v-pills-messages"
-                      aria-selected="false"
+                      className={
+                      value.ask.length > 0
+                        ? "nav-link clicked"
+                        : "nav-link"
+                    }
+                      onClick={() => {
+                        value.getAskIds();
+                        value.clearVisible();
+                      }}
                     >
                       <i className="far fa-comment fa-fw mr-3"></i>Ask HN
                     </a>
                     <a
-                      className="nav-link"
-                      id="v-pills-messages-tab"
-                      data-toggle="pill"
-                      href="#v-pills-messages"
-                      role="tab"
-                      aria-controls="v-pills-messages"
-                      aria-selected="false"
+                      className={
+                      value.jobs.length > 0
+                        ? "nav-link clicked"
+                        : "nav-link"
+                    }
+                      onClick={() => {
+                        value.getJobsIds();
+                        value.clearVisible();
+                      }}
                     >
                       <i className="fas fa-file-invoice-dollar fa-fw mr-3"></i>
                       Jobs
@@ -87,7 +101,11 @@ class VerticalNav extends Component {
                   </div>
                 </div>
                 <div className="col-9">
-                <SearchResults />
+                  <SearchResults />
+                  <SearchResultsHot />
+                  <AskHN />
+                  <ShowHN />
+                  <Jobs />
                 </div>
               </div>
             </div>

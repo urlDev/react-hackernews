@@ -2,17 +2,17 @@ import React, { Component } from "react";
 import { NewsConsumer } from "../../Context";
 
 
-import "./SearchResults.scss";
+import "./AskHN.scss";
 
-class SearchResults extends Component {
+class AskHN extends Component {
   render() {
     return (
       <NewsConsumer>
         {value => {
           return (
-            <div className="SearchResults">
-              {value.all
-                ? value.all.slice(0, value.visible).map(story => {
+            <div className="AskHN">
+              {value.ask
+                ? value.ask.slice(0, value.visible).map(story => {
                     // const url = new URL(`${story.url}`);
                     const getLocation = function(href) {
                       const l = document.createElement("a");
@@ -35,9 +35,9 @@ class SearchResults extends Component {
                                 <i className="far fa-user mr-2"></i>
                                 {story.by}
                               </span>
-                              <span className="story__bottom-link">
+                              {/* <span className="story__bottom-link">
                                 (<a href={story.url}>{l.hostname}</a>)
-                              </span>
+                              </span> */}
                             </p>
                           </div>
                           <div className="col-md-2">
@@ -52,7 +52,7 @@ class SearchResults extends Component {
                   })
                 : "loading"}
                 {/* if value visible is smaller than popular.length then add button */}
-                      {value.visible < value.all.length && (
+                      {value.visible < value.ask.length && (
                         <button
                           onClick={value.loadMore}
                           type="button"
@@ -69,4 +69,4 @@ class SearchResults extends Component {
   }
 }
 
-export default SearchResults;
+export default AskHN;

@@ -1,8 +1,6 @@
 @import "../../index.scss";
-.SearchResults {
+.AskHN {
     text-align: left;
-    // max-height: 80vh;
-    // overflow-y: scroll;
     .story {
         padding: 1rem 2rem;
         color: $blue;
@@ -49,14 +47,5 @@
     }
     .fade-in {
         animation: fadeIn 0.5s ease-in;
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
     }
 }

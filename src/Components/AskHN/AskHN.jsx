@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { NewsConsumer } from "../../Context";
 
-
 import "./AskHN.scss";
 
 class AskHN extends Component {
@@ -13,13 +12,6 @@ class AskHN extends Component {
             <div className="AskHN">
               {value.ask
                 ? value.ask.slice(0, value.visible).map(story => {
-                    // const url = new URL(`${story.url}`);
-                    const getLocation = function(href) {
-                      const l = document.createElement("a");
-                      l.href = href;
-                      return l;
-                    };
-                    const l = getLocation(`${story.url}`);
                     return (
                       <div className="story pl-0 fade-in">
                         <div className="row">
@@ -27,7 +19,9 @@ class AskHN extends Component {
                           
                           </div> */}
                           <div className="col-md-10">
-                            <a href={`${story.url}`} className="story__top">{story.title}</a>
+                            <a href={`${story.url}`} className="story__top">
+                              {story.title}
+                            </a>
                             <p className="story__bottom">
                               <i className="far fa-heart mr-2"></i>
                               {story.score}
@@ -35,9 +29,6 @@ class AskHN extends Component {
                                 <i className="far fa-user mr-2"></i>
                                 {story.by}
                               </span>
-                              {/* <span className="story__bottom-link">
-                                (<a href={story.url}>{l.hostname}</a>)
-                              </span> */}
                             </p>
                           </div>
                           <div className="col-md-2">
@@ -51,16 +42,16 @@ class AskHN extends Component {
                     );
                   })
                 : "loading"}
-                {/* if value visible is smaller than popular.length then add button */}
-                      {value.visible < value.ask.length && (
-                        <button
-                          onClick={value.loadMore}
-                          type="button"
-                          className="load-more"
-                        >
-                          Load more
-                        </button>
-                      )}
+              {/* if value visible is smaller than popular.length then add button */}
+              {value.visible < value.ask.length && (
+                <button
+                  onClick={value.loadMore}
+                  type="button"
+                  className="load-more"
+                >
+                  Load more
+                </button>
+              )}
             </div>
           );
         }}

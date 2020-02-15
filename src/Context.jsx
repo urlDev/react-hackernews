@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Persist } from "react-persist";
+import { getLinkPreview } from "link-preview-js";
 
 const NewsContext = React.createContext();
 
@@ -18,6 +19,7 @@ class NewsProvider extends Component {
     this.state = {
       id: [],
       all: [],
+      allImages: [],
       hot: [],
       ask: [],
       show: [],
@@ -48,10 +50,9 @@ class NewsProvider extends Component {
   //clears the state of visible to go back to initial state of 10 movies
   clearVisible = () => {
     this.setState({
-      visible: 10,
+      visible: 10
     });
   };
-
 
   //first, we get all story data from state(they are ids)
   //then we iterate through them and fetch data for each id
@@ -66,6 +67,22 @@ class NewsProvider extends Component {
           all: [...this.state.all, data]
         })
       );
+    });
+  };
+
+  getAllImages = () => {
+    this.state.jobs.map(id => {
+      return getLinkPreview(
+        `https://cors-anywhere.herokuapp.com/${id.url}`
+      ).then(data => {
+        this.setState(
+          {
+            allImages:[data] 
+            // allImages: [ ...this.state.allImages,  `${data.images[0]}`]
+          },
+          () => console.log(this.state.allImages)
+        );
+      });
     });
   };
 
@@ -96,7 +113,7 @@ class NewsProvider extends Component {
   getHot = () => {
     this.cleanState();
     this.state.id.map(id => {
-     return axios.get(`${getUrl + id}.json`).then(({ data }) => {
+      return axios.get(`${getUrl + id}.json`).then(({ data }) => {
         this.setState({
           hot: [...this.state.hot, data]
         });
@@ -108,9 +125,11 @@ class NewsProvider extends Component {
     this.cleanState();
     this.state.id.map(id => {
       return axios.get(`${getUrl + id}.json`).then(({ data }) => {
-        this.setState({
-          jobs: [...this.state.jobs, data]
-        });
+        this.setState(
+          {
+            jobs: [...this.state.jobs, data]
+          }
+        );
       });
     });
   };
@@ -126,6 +145,7 @@ class NewsProvider extends Component {
           },
           () => {
             this.getAll();
+            // this.getAllImages();
           }
         )
       )
@@ -214,6 +234,7 @@ class NewsProvider extends Component {
           },
           () => {
             this.getJobs();
+            this.getAllImages();
           }
         )
       )
@@ -241,10 +262,16 @@ class NewsProvider extends Component {
           getShowIds: this.getShowIds,
           getJobsIds: this.getJobsIds,
           loadMore: this.loadMore,
-          clearVisible: this.clearVisible,
+          clearVisible: this.clearVisible
         }}
       >
         {this.props.children}
+        <Persist
+          name="news"
+          data={this.state}
+          debounce={500}
+          onMount={data => this.setState(data)}
+        />
       </NewsContext.Provider>
     );
   }

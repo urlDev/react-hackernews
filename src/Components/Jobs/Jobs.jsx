@@ -23,10 +23,14 @@ class Jobs extends Component {
                     return (
                       <div className="story pl-0 fade-in">
                         <div className="row">
-                          {/* <div className="col-md-2">
-                          
-                          </div> */}
-                          <div className="col-md-10">
+                          <div className="col-md-2">
+                          {value.allImages.map(i => {
+                            return (
+                              <img src={i} className="story__image" alt=""/>
+                            )
+                          })}
+                          </div>
+                          <div className="col-md-8">
                             <a href={`${story.url}`} className="story__top">{story.title}</a>
                             <p className="story__bottom">
                               <i className="far fa-heart mr-2"></i>

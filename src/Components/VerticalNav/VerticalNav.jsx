@@ -27,16 +27,16 @@ class VerticalNav extends Component {
               <div className="row">
                 <div className="col-3">
                   <div
-                    className="nav flex-column  text-left"
+                    className="nav flex-column"
                     id="v-pills-tab"
                     role="tablist"
                     aria-orientation="vertical"
                   >
-                    <a
+                    <button
                       className={
                       value.all.length > 0
                         ? "nav-link clicked"
-                        : "nav-link"
+                        : "nav-link "
                     }
                       onClick={() => {
                         value.getStoryIds();
@@ -44,8 +44,8 @@ class VerticalNav extends Component {
                       }}
                     >
                       <i className="fas fa-home fa-fw mr-3"></i>All
-                    </a>
-                    <a
+                    </button>
+                    <button
                       className={
                       value.hot.length > 0
                         ? "nav-link clicked"
@@ -57,8 +57,8 @@ class VerticalNav extends Component {
                       }}
                     >
                       <i className="fas fa-fire fa-fw mr-3"></i>Hot
-                    </a>
-                    <a
+                    </button>
+                    <button
                       className={
                       value.show.length > 0
                         ? "nav-link clicked"
@@ -70,8 +70,8 @@ class VerticalNav extends Component {
                       }}
                     >
                       <i className="fas fa-volume-up fa-fw mr-3"></i>Show HN
-                    </a>
-                    <a
+                    </button>
+                    <button
                       className={
                       value.ask.length > 0
                         ? "nav-link clicked"
@@ -83,8 +83,8 @@ class VerticalNav extends Component {
                       }}
                     >
                       <i className="far fa-comment fa-fw mr-3"></i>Ask HN
-                    </a>
-                    <a
+                    </button>
+                    <button
                       className={
                       value.jobs.length > 0
                         ? "nav-link clicked"
@@ -97,7 +97,7 @@ class VerticalNav extends Component {
                     >
                       <i className="fas fa-file-invoice-dollar fa-fw mr-3"></i>
                       Jobs
-                    </a>
+                    </button>
                   </div>
                 </div>
                 <div className="col-9">
@@ -118,5 +118,4 @@ class VerticalNav extends Component {
 
 export default VerticalNav;
 
-{
-}
+

@@ -4,6 +4,9 @@
     .story {
         padding: 1rem 2rem;
         color: $blue;
+        &__image {
+            width: 2rem;
+        }
         &__top {
             text-decoration: none;
             color: $blue;

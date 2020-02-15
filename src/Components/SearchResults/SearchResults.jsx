@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { NewsConsumer } from "../../Context";
-
-
+import { ReactTinyLink } from "react-tiny-link";
+import { getLinkPreview } from "link-preview-js";
 import "./SearchResults.scss";
 
 class SearchResults extends Component {
@@ -20,14 +20,29 @@ class SearchResults extends Component {
                       return l;
                     };
                     const l = getLocation(`${story.url}`);
+                    
+                    // getLinkPreview(
+                    //   `https://cors-anywhere.herokuapp.com/${story.url}`
+                    // ).then(data => {
+                    //   const imagePreview = data.images[0];
+                    // });
+
                     return (
-                      <div className="story pl-0 fade-in">
+                      <div key={story.id} className="story pl-0 fade-in">
                         <div className="row">
-                          {/* <div className="col-md-2">
-                          
-                          </div> */}
                           <div className="col-md-10">
-                            <a href={`${story.url}`} className="story__top">{story.title}</a>
+                            {/* <ReactTinyLink
+                              cardSize="large"
+                              showGraphic={true}
+                              maxLine={2}
+                              minLine={1}
+                              url={`${story.url}`}
+                            /> */}
+                          </div>
+                          <div className="col-md-10">
+                            <a href={`${story.url}`} className="story__top">
+                              {story.title}
+                            </a>
                             <p className="story__bottom">
                               <i className="far fa-heart mr-2"></i>
                               {story.score}
@@ -51,16 +66,16 @@ class SearchResults extends Component {
                     );
                   })
                 : "loading"}
-                {/* if value visible is smaller than popular.length then add button */}
-                      {value.visible < value.all.length && (
-                        <button
-                          onClick={value.loadMore}
-                          type="button"
-                          className="load-more"
-                        >
-                          Load more
-                        </button>
-                      )}
+              {/* if value visible is smaller than popular.length then add button */}
+              {value.visible < value.all.length && (
+                <button
+                  onClick={value.loadMore}
+                  type="button"
+                  className="load-more"
+                >
+                  Load more
+                </button>
+              )}
             </div>
           );
         }}

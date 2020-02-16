@@ -43,7 +43,8 @@ class NewsProvider extends Component {
       hot: [],
       ask: [],
       show: [],
-      jobs: []
+      jobs: [],
+      allImages:[]
     });
   };
 
@@ -70,18 +71,16 @@ class NewsProvider extends Component {
     });
   };
 
+// allImages: [ ...this.state.allImages,  `${data.images[0]}`]
   getAllImages = () => {
+    this.cleanState()
     this.state.jobs.map(id => {
       return getLinkPreview(
         `https://cors-anywhere.herokuapp.com/${id.url}`
       ).then(data => {
-        this.setState(
-          {
-            allImages:[data] 
-            // allImages: [ ...this.state.allImages,  `${data.images[0]}`]
-          },
-          () => console.log(this.state.allImages)
-        );
+        this.setState({
+          allImages: [...this.state.allImages, data]
+        }, console.log(this.state.allImages))
       });
     });
   };
@@ -101,11 +100,9 @@ class NewsProvider extends Component {
     this.cleanState();
     this.state.id.map(id => {
       return axios.get(`${getUrl + id}.json`).then(({ data }) => {
-        if (data.title.includes("Show HN:")) {
-          this.setState({
-            show: [...this.state.show, data]
-          });
-        }
+        this.setState({
+          show: [...this.state.show, data]
+        });
       });
     });
   };
@@ -125,11 +122,9 @@ class NewsProvider extends Component {
     this.cleanState();
     this.state.id.map(id => {
       return axios.get(`${getUrl + id}.json`).then(({ data }) => {
-        this.setState(
-          {
-            jobs: [...this.state.jobs, data]
-          }
-        );
+        this.setState({
+          jobs: [...this.state.jobs, data]
+        }, () => console.log(this.state.jobs));
       });
     });
   };

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { NewsConsumer } from "../../Context";
 import { ReactTinyLink } from "react-tiny-link";
-import { getLinkPreview } from "link-preview-js";
+
 import "./SearchResults.scss";
 
 class SearchResults extends Component {
@@ -20,7 +20,7 @@ class SearchResults extends Component {
                       return l;
                     };
                     const l = getLocation(`${story.url}`);
-                    
+
                     // getLinkPreview(
                     //   `https://cors-anywhere.herokuapp.com/${story.url}`
                     // ).then(data => {
@@ -30,16 +30,14 @@ class SearchResults extends Component {
                     return (
                       <div key={story.id} className="story pl-0 fade-in">
                         <div className="row">
-                          <div className="col-md-10">
-                            {/* <ReactTinyLink
+                          <div className="col-md-12">
+                            <ReactTinyLink
                               cardSize="large"
                               showGraphic={true}
                               maxLine={2}
                               minLine={1}
-                              url={`${story.url}`}
-                            /> */}
-                          </div>
-                          <div className="col-md-10">
+                              url={`https://cors-anywhere.herokuapp.com/${story.url}`}
+                            />
                             <a href={`${story.url}`} className="story__top">
                               {story.title}
                             </a>
@@ -54,12 +52,12 @@ class SearchResults extends Component {
                                 (<a href={story.url}>{l.hostname}</a>)
                               </span>
                             </p>
-                          </div>
-                          <div className="col-md-2">
+                            {/* <div className="col-md-2">
                             <h3>
                               <i className="fas fa-share-alt mr-4"></i>
                               <i className="far fa-star"></i>
                             </h3>
+                          </div> */}
                           </div>
                         </div>
                       </div>

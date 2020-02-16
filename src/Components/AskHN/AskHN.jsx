@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { NewsConsumer } from "../../Context";
+import { ReactTinyLink } from "react-tiny-link";
 
 import "./AskHN.scss";
 
@@ -15,10 +16,14 @@ class AskHN extends Component {
                     return (
                       <div className="story pl-0 fade-in">
                         <div className="row">
-                          {/* <div className="col-md-2">
-                          
-                          </div> */}
-                          <div className="col-md-10">
+                          <div className="col-md-12">
+                            <ReactTinyLink
+                              cardSize="large"
+                              showGraphic={true}
+                              maxLine={2}
+                              minLine={1}
+                              url={`https://cors-anywhere.herokuapp.com/${story.url}`}
+                            />
                             <a href={`${story.url}`} className="story__top">
                               {story.title}
                             </a>
@@ -30,12 +35,12 @@ class AskHN extends Component {
                                 {story.by}
                               </span>
                             </p>
-                          </div>
-                          <div className="col-md-2">
+                            {/* <div className="col-md-2">
                             <h3>
                               <i className="fas fa-share-alt mr-4"></i>
                               <i className="far fa-star"></i>
                             </h3>
+                          </div> */}
                           </div>
                         </div>
                       </div>

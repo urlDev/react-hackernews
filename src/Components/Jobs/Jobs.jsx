@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { NewsConsumer } from "../../Context";
-
+import { ReactTinyLink } from "react-tiny-link";
 
 import "./Jobs.scss";
 
@@ -23,15 +23,17 @@ class Jobs extends Component {
                     return (
                       <div className="story pl-0 fade-in">
                         <div className="row">
-                          <div className="col-md-2">
-                          {value.allImages.map(i => {
-                            return (
-                              <img src={i} className="story__image" alt=""/>
-                            )
-                          })}
-                          </div>
-                          <div className="col-md-8">
-                            <a href={`${story.url}`} className="story__top">{story.title}</a>
+                          <div className="col-md-12">
+                            <ReactTinyLink
+                              cardSize="large"
+                              showGraphic={true}
+                              maxLine={2}
+                              minLine={1}
+                              url={`https://cors-anywhere.herokuapp.com/${story.url}`}
+                            />
+                            <a href={`${story.url}`} className="story__top">
+                              {story.title}
+                            </a>
                             <p className="story__bottom">
                               <i className="far fa-heart mr-2"></i>
                               {story.score}
@@ -43,28 +45,28 @@ class Jobs extends Component {
                                 (<a href={story.url}>{l.hostname}</a>)
                               </span>
                             </p>
-                          </div>
-                          <div className="col-md-2">
+                            {/* <div className="col-md-2">
                             <h3>
                               <i className="fas fa-share-alt mr-4"></i>
                               <i className="far fa-star"></i>
                             </h3>
+                          </div> */}
                           </div>
                         </div>
                       </div>
                     );
                   })
                 : "loading"}
-                {/* if value visible is smaller than popular.length then add button */}
-                      {value.visible < value.jobs.length && (
-                        <button
-                          onClick={value.loadMore}
-                          type="button"
-                          className="load-more"
-                        >
-                          Load more
-                        </button>
-                      )}
+              {/* if value visible is smaller than popular.length then add button */}
+              {value.visible < value.jobs.length && (
+                <button
+                  onClick={value.loadMore}
+                  type="button"
+                  className="load-more"
+                >
+                  Load more
+                </button>
+              )}
             </div>
           );
         }}

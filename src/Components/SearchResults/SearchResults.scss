@@ -6,6 +6,18 @@
     .story {
         padding: 1rem 2rem;
         color: $blue;
+        display: inline-block;
+        width: 20em;
+        .sc-htpNat.cCOoAV.react_tinylink_card_content_wrapper {
+            display: none;
+        }
+        a.sc-gzVnrw.gilWtX.react_tinylink_card {
+            max-width: none;
+            height: 20rem;
+        }
+        &:first-child {
+            padding-top: 0;
+        }
         &__top {
             text-decoration: none;
             color: $blue;
@@ -19,9 +31,9 @@
                 }
             }
         }
-    }
-    .story:first-child {
-        padding-top: 0;
+        &__card {
+            height: 5vh;
+        }
     }
     .fa-star {
         color: $orange;

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Persist } from "react-persist";
-import { getLinkPreview } from "link-preview-js";
 
 const NewsContext = React.createContext();
 
@@ -14,6 +13,8 @@ const jobStoriesUrl = `${baseUrl}jobstories.json`;
 const getUrl = `${baseUrl}item/`;
 
 class NewsProvider extends Component {
+  _isMounted = false;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -29,11 +30,22 @@ class NewsProvider extends Component {
     };
   }
 
+  CancelToken = axios.CancelToken;
+  source = this.CancelToken.source();
+
+  abortController = new AbortController();
+
   componentDidMount() {
+    this._isMounted = true;
+    // this.getTopIds();
     this.getStoryIds();
     // this.getAll();
-
     this.cleanState();
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+     this.abortController.abort();
   }
 
   //cleans the states for movie lists so they wouldnt stack up
@@ -44,7 +56,7 @@ class NewsProvider extends Component {
       ask: [],
       show: [],
       jobs: [],
-      allImages:[]
+      allImages: []
     });
   };
 
@@ -60,38 +72,76 @@ class NewsProvider extends Component {
   //then we save them to the news state, with existing state
   //make it an array so we can iterate through them
   //💪🏽
-  getAll = () => {
+  getAll = async () => {
     this.cleanState();
-    this.state.id.slice(0, 100).map(id => {
-      return axios.get(`${getUrl + id}.json`).then(({ data }) =>
-        this.setState({
-          all: [...this.state.all, data]
-        })
-      );
+    this.state.id.slice(0, 50).map(id => {
+     return fetch(`${getUrl + id}.json`, { signal: this.abortController.signal })
+        .then(results => results.json())
+        .then(data => 
+          this.setState({
+            all:[...this.state.all, data]
+          })
+        )
+        .catch(err => {
+          console.log("err", err.name);
+          if (err.name === "AbortError") return;
+          throw (err);
+        });
     });
+
+    // return axios.get(`${getUrl + id}.json`).then(({ data }) => {
+    //         if (this._isMounted) {
+    //           this.setState({
+    //             all: [...this.state.all, data]
+    //           }, () => console.log(this.state.all));
+    //         }
+    //       });
+
+    // try {
+    //   let result = await axios.get(RANDOM_USER_API, {
+    //     cancelToken: this.source.token
+    //   });
+    //   return result.data;
+    // } catch (error) {
+    //   if (axios.isCancel(error)) {
+    //     console.log("Request canceled", error.message);
+    //     throw new Error("Cancelled");
+    //   }
+    // }
+    // this.fetchUser()
+    //   .then(data =>
+    //     this.setState({
+    //       user: data
+    //     })
+    //   )
+    //   .catch(err => {
+    //     console.log("Cancelled");
+    //   });
   };
 
-// allImages: [ ...this.state.allImages,  `${data.images[0]}`]
-  getAllImages = () => {
-    this.cleanState()
-    this.state.jobs.map(id => {
-      return getLinkPreview(
-        `https://cors-anywhere.herokuapp.com/${id.url}`
-      ).then(data => {
-        this.setState({
-          allImages: [...this.state.allImages, data]
-        }, console.log(this.state.allImages))
-      });
-    });
-  };
+  // allImages: [ ...this.state.allImages,  `${data.images[0]}`]
+  // getAllImages = () => {
+  //   this.cleanState()
+  //   this.state.jobs.map(id => {
+  //     return getLinkPreview(
+  //       `https://cors-anywhere.herokuapp.com/${id.url}`
+  //     ).then(data => {
+  //       this.setState({
+  //         allImages: [...this.state.allImages, data]
+  //       }, console.log(this.state.allImages))
+  //     });
+  //   });
+  // };
 
   getAsk = () => {
     this.cleanState();
     this.state.id.map(id => {
       return axios.get(`${getUrl + id}.json`).then(({ data }) => {
-        this.setState({
-          ask: [...this.state.ask, data]
-        });
+        if (this._isMounted) {
+          this.setState({
+            ask: [...this.state.ask, data]
+          });
+        }
       });
     });
   };
@@ -100,9 +150,11 @@ class NewsProvider extends Component {
     this.cleanState();
     this.state.id.map(id => {
       return axios.get(`${getUrl + id}.json`).then(({ data }) => {
-        this.setState({
-          show: [...this.state.show, data]
-        });
+        if (this._isMounted) {
+          this.setState({
+            show: [...this.state.show, data]
+          });
+        }
       });
     });
   };
@@ -111,9 +163,11 @@ class NewsProvider extends Component {
     this.cleanState();
     this.state.id.map(id => {
       return axios.get(`${getUrl + id}.json`).then(({ data }) => {
-        this.setState({
-          hot: [...this.state.hot, data]
-        });
+        if (this._isMounted) {
+          this.setState({
+            hot: [...this.state.hot, data]
+          });
+        }
       });
     });
   };
@@ -122,9 +176,11 @@ class NewsProvider extends Component {
     this.cleanState();
     this.state.id.map(id => {
       return axios.get(`${getUrl + id}.json`).then(({ data }) => {
-        this.setState({
-          jobs: [...this.state.jobs, data]
-        }, () => console.log(this.state.jobs));
+        if (this._isMounted) {
+          this.setState({
+            jobs: [...this.state.jobs, data]
+          });
+        }
       });
     });
   };
@@ -133,17 +189,19 @@ class NewsProvider extends Component {
     await axios
       .get(`${newStoriesUrl}`)
       //this will structure out only data part of the api, cleaner call
-      .then(({ data }) =>
-        this.setState(
-          {
-            id: data
-          },
-          () => {
-            this.getAll();
-            // this.getAllImages();
-          }
-        )
-      )
+      .then(({ data }) => {
+        if (this._isMounted) {
+          this.setState(
+            {
+              id: data
+            },
+            () => {
+              this.getAll();
+              // this.getAllImages();
+            }
+          );
+        }
+      })
       .catch(error => {
         console.log(error);
       });
@@ -156,16 +214,18 @@ class NewsProvider extends Component {
     await axios
       .get(`${topStoriesUrl}`)
       //this will structure out only data part of the api, cleaner call
-      .then(({ data }) =>
-        this.setState(
-          {
-            id: data
-          },
-          () => {
-            this.getHot();
-          }
-        )
-      )
+      .then(({ data }) => {
+        if (this._isMounted) {
+          this.setState(
+            {
+              id: data
+            },
+            () => {
+              this.getHot();
+            }
+          );
+        }
+      })
       .catch(error => {
         console.log(error);
       });
@@ -178,16 +238,18 @@ class NewsProvider extends Component {
     await axios
       .get(`${askStoriesUrl}`)
       //this will structure out only data part of the api, cleaner call
-      .then(({ data }) =>
-        this.setState(
-          {
-            id: data
-          },
-          () => {
-            this.getAsk();
-          }
-        )
-      )
+      .then(({ data }) => {
+        if (this._isMounted) {
+          this.setState(
+            {
+              id: data
+            },
+            () => {
+              this.getAsk();
+            }
+          );
+        }
+      })
       .catch(error => {
         console.log(error);
       });
@@ -200,16 +262,18 @@ class NewsProvider extends Component {
     await axios
       .get(`${showStoriesUrl}`)
       //this will structure out only data part of the api, cleaner call
-      .then(({ data }) =>
-        this.setState(
-          {
-            id: data
-          },
-          () => {
-            this.getShow();
-          }
-        )
-      )
+      .then(({ data }) => {
+        if (this._isMounted) {
+          this.setState(
+            {
+              id: data
+            },
+            () => {
+              this.getShow();
+            }
+          );
+        }
+      })
       .catch(error => {
         console.log(error);
       });
@@ -222,17 +286,19 @@ class NewsProvider extends Component {
     await axios
       .get(`${jobStoriesUrl}`)
       //this will structure out only data part of the api, cleaner call
-      .then(({ data }) =>
-        this.setState(
-          {
-            id: data
-          },
-          () => {
-            this.getJobs();
-            this.getAllImages();
-          }
-        )
-      )
+      .then(({ data }) => {
+        if (this._isMounted) {
+          this.setState(
+            {
+              id: data
+            },
+            () => {
+              this.getJobs();
+              // this.getAllImages();
+            }
+          );
+        }
+      })
       .catch(error => {
         console.log(error);
       });

@@ -15,8 +15,8 @@
         "react-dom": "^16.12.0",
         "react-persist": "^1.0.2",
         "react-router-dom": "^5.1.2",
-        "react-tiny-link": "https://github.com/urlDev/react-tiny-link.git",
         "react-scripts": "3.3.1",
+        "react-tiny-link": "https://github.com/urlDev/react-tiny-link.git",
         "typescript": "^3.7.5"
     },
     "scripts": {

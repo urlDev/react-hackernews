@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { NewsConsumer } from "../../Context";
 import { ReactTinyLink } from "react-tiny-link";
-
 import "./SearchResults.scss";
 
 class SearchResults extends Component {
@@ -37,7 +36,7 @@ class SearchResults extends Component {
                               maxLine={2}
                               minLine={1}
                               url={`https://cors-anywhere.herokuapp.com/${story.url}`}
-                            />
+                            ><img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt=""/></ReactTinyLink>
                             <a href={`${story.url}`} className="story__top">
                               {story.title}
                             </a>

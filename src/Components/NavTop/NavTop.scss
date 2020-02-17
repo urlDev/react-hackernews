@@ -2,18 +2,35 @@
 .navTop {
     font-family: $montserrat;
     .navbar {
-        background: #FFFFFF !important;
+        background: #FFD200 !important;
         &-brand {
             .brandImage {
-                width: 10em;
+                width: 5rem;
             }
         }
     }
     .nav {
         &-link {
-            font-size: 2em;
-            color: $blue !important;
-            font-weight: bold;
+            font-size: 1.5rem;
+            background: none;
+            text-align: left;
+            border: none;
+            margin: 1rem;
+            cursor: pointer;
+            color: black !important;
+            padding: 1em 0;
+            transition: all 0.5s ease-in;
+            &:focus {
+                outline: none;
+            }
+            &:first-child {
+                padding-top: 0;
+            }
         }
+    }
+    .clicked {
+        color: $red !important;
+        font-weight: bold;
+        // text-shadow: 1px 1px $blue;
     }
 }

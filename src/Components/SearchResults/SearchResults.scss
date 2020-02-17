@@ -7,57 +7,53 @@
         padding: 1rem 2rem;
         color: $blue;
         display: inline-block;
-        width: 20em;
-        .sc-htpNat.cCOoAV.react_tinylink_card_content_wrapper {
-            display: none;
+        width: 33.3%;
+        &:nth-child(3n) {
+            padding-right: 0;
         }
-        a.sc-gzVnrw.gilWtX.react_tinylink_card {
-            max-width: none;
-            height: 20rem;
+        &:nth-child(2n) {
+            .card {
+                &-body {
+                    background: black;
+                    color: $white;
+                    .top {
+                        color: $red;
+                    }
+                }
+            }
         }
         &:first-child {
             padding-top: 0;
         }
-        &__top {
-            text-decoration: none;
-            color: $blue;
-        }
-        &__bottom {
-            font-size: 1rem;
-            &-user {}
-            &-link {
-                a {
-                    color: $orange;
+        .card {
+            border: none;
+            .sc-htpNat.cCOoAV.react_tinylink_card_content_wrapper {
+                display: none;
+            }
+            a.sc-gzVnrw.gilWtX.react_tinylink_card {
+                max-width: none;
+                height: 20rem;
+            }
+            &-body {
+                height: 14rem;
+                .top {
+                    text-decoration: none;
+                    color: $blue;
+                }
+                .bottom {
+                    font-size: 1rem;
+                    &-user {}
+                    &-link {
+                        a {
+                            color: $red;
+                        }
+                    }
                 }
             }
         }
-        &__card {
-            height: 5vh;
-        }
     }
     .fa-star {
-        color: $orange;
-    }
-    .load-more {
-        display: block;
-        border: 0;
-        // margin: 2rem 0;
-        padding: 1rem 3.75rem;
-        font-size: 1.5rem;
-        background-color: $orange;
-        color: $white;
-        font-weight: 500;
-        text-transform: uppercase;
-        font-family: $montserrat;
-        cursor: pointer;
-        border-radius: 0.25em;
-        transition: all 0.5s ease-in-out;
-        &:focus {
-            outline: 1px solid $white;
-        }
-        &:hover {
-            background: $blue
-        }
+        color: $red;
     }
     .fade-in {
         animation: fadeIn 0.5s ease-in;

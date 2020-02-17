@@ -5,6 +5,7 @@ import App from "./App";
 import { NewsProvider } from "./Context.jsx";
 import * as serviceWorker from "./serviceWorker";
 
+
 ReactDOM.render(
   <NewsProvider>
     <App />

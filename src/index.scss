@@ -1,3 +1,9 @@
+@font-face {
+    font-family: 'Gilroy';
+    src: local('Gilroy'), url("./Fonts/Gilroy-ExtraBold.otf") format('truetype');
+}
+
+
 /*** fonts ****/
 
 $montserrat: 'Montserrat',
@@ -9,11 +15,13 @@ sans-serif;
 
 /*** colors ***/
 
-$orange: #FF5200;
+$red:#F2115B;
 $blue: #15202B;
 $black: #0A0909;
 $white: #FDFFFC;
-$secondWhite: rgb(181, 180, 187);
+$secondWhite: rgb(181,
+180,
+187);
 $turq: #114B5F;
 
 /**** *****/

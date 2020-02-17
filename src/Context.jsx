@@ -72,7 +72,7 @@ class NewsProvider extends Component {
   //then we save them to the news state, with existing state
   //make it an array so we can iterate through them
   //💪🏽
-  getAll = async () => {
+  getAll = () => {
     this.cleanState();
     this.state.id.slice(0, 50).map(id => {
      return fetch(`${getUrl + id}.json`, { signal: this.abortController.signal })
@@ -97,26 +97,6 @@ class NewsProvider extends Component {
     //         }
     //       });
 
-    // try {
-    //   let result = await axios.get(RANDOM_USER_API, {
-    //     cancelToken: this.source.token
-    //   });
-    //   return result.data;
-    // } catch (error) {
-    //   if (axios.isCancel(error)) {
-    //     console.log("Request canceled", error.message);
-    //     throw new Error("Cancelled");
-    //   }
-    // }
-    // this.fetchUser()
-    //   .then(data =>
-    //     this.setState({
-    //       user: data
-    //     })
-    //   )
-    //   .catch(err => {
-    //     console.log("Cancelled");
-    //   });
   };
 
   // allImages: [ ...this.state.allImages,  `${data.images[0]}`]

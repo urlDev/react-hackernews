@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { NewsConsumer } from "../../Context";
 import { ReactTinyLink } from "react-tiny-link";
+import Button from "../Button/Button";
 
 import "./AskHN.scss";
 
@@ -17,30 +18,37 @@ class AskHN extends Component {
                       <div className="story pl-0 fade-in">
                         <div className="row">
                           <div className="col-md-12">
-                            <ReactTinyLink
-                              cardSize="large"
-                              showGraphic={true}
-                              maxLine={2}
-                              minLine={1}
-                              url={`https://cors-anywhere.herokuapp.com/${story.url}`}
-                            />
-                            <a href={`${story.url}`} className="story__top">
-                              {story.title}
-                            </a>
-                            <p className="story__bottom">
-                              <i className="far fa-heart mr-2"></i>
-                              {story.score}
-                              <span className="story__bottom-user ml-5 mr-5">
-                                <i className="far fa-user mr-2"></i>
-                                {story.by}
-                              </span>
-                            </p>
-                            {/* <div className="col-md-2">
+                            <div className="card">
+                              <ReactTinyLink
+                                cardSize="large"
+                                showGraphic={true}
+                                maxLine={2}
+                                minLine={1}
+                                url={`https://cors-anywhere.herokuapp.com/${story.url}`}
+                              />
+                              <div className="card-body">
+                                <a href={`${story.url}`} className="top mt-3">
+                                  {story.title}
+                                </a>
+                                <p className="bottom mt-3">
+                                  <i className="far fa-heart mr-2"></i>
+                                  {story.score}
+                                  <span className="bottom-user ml-5 mr-5">
+                                    <i className="far fa-user mr-2"></i>
+                                    {story.by}
+                                  </span>
+                                  {/* <span className="bottom-link">
+                                    (<a href={story.url}>{l.hostname}</a>)
+                                  </span> */}
+                                </p>
+                                {/* <div className="col-md-2">
                             <h3>
                               <i className="fas fa-share-alt mr-4"></i>
                               <i className="far fa-star"></i>
                             </h3>
                           </div> */}
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -49,13 +57,7 @@ class AskHN extends Component {
                 : "loading"}
               {/* if value visible is smaller than popular.length then add button */}
               {value.visible < value.ask.length && (
-                <button
-                  onClick={value.loadMore}
-                  type="button"
-                  className="load-more"
-                >
-                  Load more
-                </button>
+                <Button/>
               )}
             </div>
           );

@@ -1,16 +1,20 @@
-import React from 'react';
-import NavTop from "./Components/NavTop/NavTop.jsx"
-import VerticalNav from "./Components/VerticalNav/VerticalNav.jsx"
+import React from "react";
+import NavTop from "./Components/NavTop/NavTop.jsx";
+import VerticalNav from "./Components/VerticalNav/VerticalNav.jsx";
+import Hero from "./Components/Hero/Hero.jsx";
+import Footer from "./Components/Footer/Footer.jsx"
 
-
-import './App.scss';
-
+import "./App.scss";
 
 function App() {
   return (
     <div className="App">
-      <NavTop/>
-      <VerticalNav/>
+      <div className="all">
+        <NavTop />
+        <Hero />
+      </div>
+      <VerticalNav />
+      <Footer/>
     </div>
   );
 }

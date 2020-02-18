@@ -1,0 +1,58 @@
+@import "../../index.scss";
+.Star {
+    // padding-bottom: 0rem;
+    min-height: 70vh;
+    position: relative;
+    top: -39vh;
+    // left: 50%;
+    // transform: translate(-50%, -20vh);
+    font-family: $montserrat;
+    font-size: 2em;
+    padding-left: 0;
+    padding-right: 0;
+    .news {
+        display: inline-block;
+        min-width: 18em;
+        width: calc(100% / 3);
+        padding-bottom: 2em;
+        &:nth-child(2n) {
+            .card {
+                background: $black;
+                &-body {
+                    a {
+                        color: $white;
+                    }
+                }
+            }
+        }
+    }
+    .card {
+        border: 1px solid #ffd200;
+        padding: 1em;
+        &-body {
+            height: 20rem;
+            .top {
+                height: 15rem;
+                font-size: 2.5rem;
+                a {
+                    color: $black;
+                }
+            }
+            .bottom {
+                font-size: 1rem;
+                &-link {
+                    a {
+                        color: $red;
+                    }
+                }
+            }
+        }
+    }
+    .fa-star {
+        // margin-top: 1em;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+            transform: scale(2);
+        }
+    }
+}

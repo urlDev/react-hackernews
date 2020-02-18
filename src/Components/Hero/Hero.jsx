@@ -24,14 +24,11 @@ class Hero extends Component {
                 <h1 className="display-1 fade-in">show</h1>
               ) : value.jobs.length > 0 ? (
                 <h1 className="display-1 fade-in">jobs</h1>
+              ) : value.star.length > 0 ? (
+                <h1 className="display-1 fade-in">starred</h1>
               ) : (
-                <h1></h1>
+                <h1 className="display-1 fade-in">welcome!</h1>
               )}
-              <div className="hero__social d-flex flex-column">
-                <h1><a href="https://twitter.com/urlDev"><i className="fab fa-twitter"></i></a></h1>
-                <h1><a href="https://github.com/urlDev"><i className="fab fa-github"></i></a></h1>
-                <h3 className="hero__social-follow">follow us</h3>
-              </div>
             </div>
           );
         }}

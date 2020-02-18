@@ -1,8 +1,15 @@
 @import "../../index.scss";
 .footer {
-    background: #FFD200 !important;
-    height: 20rem;
+    background: #ffd200 !important;
+    height: 15rem;
     position: absolute;
     bottom: 0;
     width: 100%;
+    .navbar-brand {
+        padding: 0;
+        .brandImage {
+            width: 5rem;
+            margin: 5rem 0;
+        }
+    }
 }

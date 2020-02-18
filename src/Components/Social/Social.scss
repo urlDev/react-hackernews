@@ -1,0 +1,21 @@
+@import "../../index.scss";
+.social {
+    text-align: center;
+    position: fixed;
+    top: 35%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    a {
+        color: black;
+        transition: all 0.3s ease-in;
+        &:hover {
+            color: $red;
+        }
+    }
+    &-follow {
+        margin-top: 7rem;
+        text-transform: uppercase;
+        transform: rotate(-90deg);
+    }
+}

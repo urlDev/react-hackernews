@@ -23,15 +23,13 @@ class VerticalNav extends Component {
       <NewsConsumer>
         {value => {
           return (
-            <div className="container verticalNav mt-5">
-              <div className="row">
-                <div className="col-12">
-                  <SearchResults />
-                  <SearchResultsHot />
-                  <AskHN />
-                  <ShowHN />
-                  <Jobs />
-                </div>
+            <div className="verticalNav col-md-12 mt-5">
+              <div className="container">
+                <SearchResults />
+                <SearchResultsHot />
+                <AskHN />
+                <ShowHN />
+                <Jobs />
               </div>
             </div>
           );

@@ -3,12 +3,18 @@ import ReactDOM from "react-dom";
 import "./index.scss";
 import App from "./App";
 import { NewsProvider } from "./Context.jsx";
+import ScrollToTop from "./Components/ScrollToTop.jsx";
+import { BrowserRouter as Router } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
 
 
 ReactDOM.render(
   <NewsProvider>
-    <App />
+    <Router>
+      <ScrollToTop>
+        <App />
+      </ScrollToTop>
+    </Router>
   </NewsProvider>,
   document.getElementById("root")
 );

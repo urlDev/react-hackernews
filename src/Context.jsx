@@ -26,7 +26,9 @@ class NewsProvider extends Component {
       show: [],
       jobs: [],
       //number of news that will be visible at first in homepage
-      visible: 10
+      visible: 10,
+      //starred news array
+      star: []
     };
   }
 
@@ -51,6 +53,7 @@ class NewsProvider extends Component {
   //cleans the states for movie lists so they wouldnt stack up
   cleanState = () => {
     this.setState({
+      // star:[],
       all: [],
       hot: [],
       ask: [],
@@ -291,6 +294,22 @@ class NewsProvider extends Component {
     });
   };
 
+  addFavorite = (url) => {
+    const {star } = this.state;
+    let copyStar = [...star];
+    // let eachMovie = {title:title, url:url};
+    //if it doesnt include, add
+    if (!star.includes(url)) {
+      copyStar.push(url);
+      this.setState({ star: copyStar }, () => console.log(url));
+      //if it includes, remove
+      //https://stackoverflow.com/questions/5767325/how-do-i-remove-a-particular-element-from-an-array-in-javascript
+    } else {
+      copyStar = copyStar.filter(news => news !== url);
+      this.setState({ star: copyStar }, () => console.log(star));
+    }
+  };
+
   render() {
     return (
       <NewsContext.Provider
@@ -303,7 +322,9 @@ class NewsProvider extends Component {
           getShowIds: this.getShowIds,
           getJobsIds: this.getJobsIds,
           loadMore: this.loadMore,
-          clearVisible: this.clearVisible
+          clearVisible: this.clearVisible,
+          addFavorite: this.addFavorite,
+          cleanState: this.cleanState
         }}
       >
         {this.props.children}

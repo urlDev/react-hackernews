@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Search from "../Search/Search";
 import { NewsConsumer } from "../../Context";
+import { Link } from "react-router-dom";
 
 import "./NavTop.scss";
 
@@ -16,13 +17,20 @@ class NavTop extends Component {
           return (
             <div className="container navTop">
               <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <a className="navbar-brand" href="#">
+                <Link
+                  className="navbar-brand"
+                  to="/"
+                  onClick={() => {
+                    value.getStoryIds();
+                    value.clearVisible();
+                  }}
+                >
                   <img
                     src={require("./logo_transparent.png")}
                     className="brandImage"
                     alt="hacker news brand logo"
                   />
-                </a>
+                </Link>
                 <button
                   className="navbar-toggler"
                   type="button"
@@ -41,7 +49,31 @@ class NavTop extends Component {
                 >
                   <ul className="navbar-nav ml-auto ">
                     <li className="nav-item ">
-                      <button
+                      <Link
+                        onClick={() => {
+                          value.cleanState();
+                          value.clearVisible();
+                        }}
+                        className="nav-link"
+                        to="/star"
+                      >
+                        {value.star.length > 0 ? (
+                          <i
+                            className="fas fa-star"
+                            style={{ color: "#1E90FF" }}
+                          ></i>
+                        ) : (
+                          <i
+                            className="far fa-star"
+                            style={{ color: "#1E90FF" }}
+                          ></i>
+                        )}
+                      </Link>
+                    </li>
+
+                    <li className="nav-item ">
+                      <Link
+                        to="/"
                         className={
                           value.all.length > 0
                             ? "nav-link clicked"
@@ -53,10 +85,11 @@ class NavTop extends Component {
                         }}
                       >
                         ALL
-                      </button>
+                      </Link>
                     </li>
                     <li className="nav-item">
-                      <button
+                      <Link
+                        to="/"
                         className={
                           value.hot.length > 0 ? "nav-link clicked" : "nav-link"
                         }
@@ -66,10 +99,11 @@ class NavTop extends Component {
                         }}
                       >
                         HOT
-                      </button>
+                      </Link>
                     </li>
                     <li>
-                      <button
+                      <Link
+                        to="/"
                         className={
                           value.show.length > 0
                             ? "nav-link clicked"
@@ -81,10 +115,11 @@ class NavTop extends Component {
                         }}
                       >
                         SHOW HN
-                      </button>
+                      </Link>
                     </li>
                     <li>
-                      <button
+                      <Link
+                        to="/"
                         className={
                           value.ask.length > 0 ? "nav-link clicked" : "nav-link"
                         }
@@ -94,10 +129,11 @@ class NavTop extends Component {
                         }}
                       >
                         ASK HN
-                      </button>
+                      </Link>
                     </li>
                     <li>
-                      <button
+                      <Link
+                        to="/"
                         className={
                           value.jobs.length > 0
                             ? "nav-link clicked"
@@ -109,7 +145,7 @@ class NavTop extends Component {
                         }}
                       >
                         JOBS
-                      </button>
+                      </Link>
                     </li>
                   </ul>
                 </div>

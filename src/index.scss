@@ -16,7 +16,7 @@ sans-serif;
 /*** colors ***/
 
 $red:#F2115B;
-$blue: #15202B;
+$blue: #1E90FF;
 $black: #0A0909;
 $white: #FDFFFC;
 $secondWhite: rgb(181,
@@ -41,4 +41,13 @@ body {
 
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+::-webkit-scrollbar {
+    width: 1.5em;
+}
+
+::-webkit-scrollbar-thumb {
+    background: $blue;
+    border-radius: 0.5em;
 }

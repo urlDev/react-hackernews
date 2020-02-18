@@ -1,30 +1,8 @@
 @import "../../index.scss";
 .verticalNav {
-    position: absolute;
-    // top: 50vh;
-    left: 50%;
-    transform: translate(-50%, -47vh);
+    position: relative;
+    top: -46vh;
     font-family: $montserrat;
     font-size: 2em;
-    padding-bottom: 30rem;
-    .nav-link {
-        background: none;
-        text-align: left;
-        border: none;
-        cursor: pointer;
-        color: $blue;
-        padding: 1em 0;
-        transition: all 0.5s ease-in;
-        &:focus {
-            outline: none;
-        }
-        &:first-child {
-            padding-top: 0;
-        }
-    }
-    .clicked {
-        color: $red !important;
-        font-weight: bold;
-        // text-shadow: 1px 1px $blue;
-    }
+    padding-bottom: 1rem;
 }

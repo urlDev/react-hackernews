@@ -2,7 +2,7 @@
 .navTop {
     font-family: $montserrat;
     .navbar {
-        background: #FFD200 !important;
+        background: #ffd200 !important;
         &-brand {
             .brandImage {
                 width: 5rem;
@@ -45,6 +45,15 @@
     .clicked {
         color: $red !important;
         font-weight: bold;
+        transition: all 0.5s ease-in;
         // text-shadow: 1px 1px $blue;
+        &:after {
+            content: "";
+            background: $red;
+            height: 0.5rem;
+            width: 3rem;
+            margin-right: auto;
+            display: block;
+        }
     }
 }

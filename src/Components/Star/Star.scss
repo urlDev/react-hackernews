@@ -50,6 +50,7 @@
     }
     .fa-star {
         // margin-top: 1em;
+        font-size: 2rem;
         transition: all 0.3s ease-in-out;
         &:hover {
             transform: scale(2);
@@ -71,6 +72,7 @@
 
 @media (min-width: 300px) and (max-width:767.9px) {
     .Star {
+        min-height: 20vh;
         .news {
             min-width: 9em;
             width: calc(100% / 2);
@@ -103,7 +105,8 @@
             }
         }
         .fa-star {
-            margin-top: 1.5rem;
+            font-size: 2rem;
+            // margin-top: 1.5rem;
         }
     }
 }

@@ -43,6 +43,7 @@
                 }
             }
             .bottom {
+                margin: 0.5rem 0;
                 font-size: 1rem;
                 &-link {
                     color: $red;
@@ -54,7 +55,8 @@
         }
     }
     .fa-star {
-        margin-left: 1em;
+        margin-right: 1em;
+        font-size: 2rem;
         transition: all 0.3s ease-in-out;
         color: $red;
         &:hover {
@@ -96,7 +98,9 @@
         .card {
             padding: 0.5rem;
             &-body {
+                height: 17rem;
                 .top {
+                    height: 11rem;
                     a {
                         h1 {
                             font-size: 1.4rem;
@@ -104,12 +108,14 @@
                     }
                 }
                 .bottom {
+                    // margin-top: 0;
+                    // margin-bottom: 1rem;
                     font-size: 0.7rem;
                 }
             }
         }
         .fa-star {
-            margin-top: 1.5rem;
+            margin-bottom: 1rem;
         }
     }
 }

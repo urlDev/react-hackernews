@@ -12,7 +12,7 @@ class Jobs extends Component {
           return (
             <div className="Jobs">
               {value.jobs
-                ? value.jobs.slice(0, value.visible).map(news=> {
+                ? value.jobs.slice(0, value.visible).map(news => {
                     // const url = new URL(`${story.url}`);
                     const getLocation = function(href) {
                       const l = document.createElement("a");
@@ -22,56 +22,55 @@ class Jobs extends Component {
                     const l = getLocation(`${news.url}`);
                     return (
                       <div className="col-md-4 news fade-in" key={news.title}>
-                      <div className="card">
-                        <div className="card-body">
-                          <div className="top">
-                            <a
-                              href={news.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <h1>
-                                {news.title.length >= 60
-                                  ? `${news.title.slice(0, 60)}...`
-                                  : news.title}
-                              </h1>
-                            </a>
-                          </div>
-
-                          <div className="bottom">
-
-                            <span className="bottom-link">
-                              (
+                        <div className="card">
+                          <div className="card-body">
+                            <div className="top">
                               <a
                                 href={news.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
                               >
-                                {l.hostname}
+                                <h1>
+                                  {news.title.length >= 60
+                                    ? `${news.title.slice(0, 60)}...`
+                                    : news.title}
+                                </h1>
                               </a>
-                              )
-                            </span>
-                            <span
-                              className="card-title"
-                              onClick={() => value.addFavorite(news)}
-                            >
-                              {value.star.includes(news) ? (
-                                <i
-                                  className="fas fa-star"
-                                  aria-hidden="true"
-                                  style={{ color: "#1E90FF" }}
-                                ></i>
-                              ) : (
-                                <i
-                                  className="far fa-star"
-                                  aria-hidden="true"
-                                ></i>
-                              )}
-                            </span>
+                            </div>
+
+                            <div className="bottom">
+                              <span
+                                className="card-title"
+                                onClick={() => value.addFavorite(news)}
+                              >
+                                {value.star.includes(news) ? (
+                                  <i
+                                    className="fas fa-star"
+                                    aria-hidden="true"
+                                    style={{ color: "#1E90FF" }}
+                                  ></i>
+                                ) : (
+                                  <i
+                                    className="far fa-star"
+                                    aria-hidden="true"
+                                  ></i>
+                                )}
+                              </span>
+                              <span className="bottom-link">
+                                (
+                                <a
+                                  href={news.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  {l.hostname}
+                                </a>
+                                )
+                              </span>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
                     );
                   })
                 : "loading"}

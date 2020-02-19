@@ -6,3 +6,13 @@
     font-size: 2em;
     padding-bottom: 1rem;
 }
+
+@media (min-width: 300px) and (max-width:991.9px) {
+    .verticalNav {
+        position: relative;
+        top: -37vh;
+        font-family: $montserrat;
+        font-size: 2em;
+        padding-bottom: 1rem;
+    }
+}

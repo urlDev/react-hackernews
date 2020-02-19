@@ -52,18 +52,6 @@ class SearchResults extends Component {
                           </div>
 
                           <div className="bottom">
-
-                            <span className="bottom-link">
-                              (
-                              <a
-                                href={news.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                {l.hostname}
-                              </a>
-                              )
-                            </span>
                             <span
                               className="card-title"
                               onClick={() => value.addFavorite(news)}
@@ -80,6 +68,17 @@ class SearchResults extends Component {
                                   aria-hidden="true"
                                 ></i>
                               )}
+                            </span>
+                            <span className="bottom-link">
+                              (
+                              <a
+                                href={news.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {l.hostname}
+                              </a>
+                              )
                             </span>
                           </div>
                         </div>

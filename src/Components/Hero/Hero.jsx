@@ -21,13 +21,13 @@ class Hero extends Component {
               ) : value.ask.length > 0 ? (
                 <h1 className="display-1 fade-in">ask</h1>
               ) : value.show.length > 0 ? (
-                <h1 className="display-1 fade-in">show</h1>
+                <h1 className="display-1 welcome fade-in">show</h1>
               ) : value.jobs.length > 0 ? (
                 <h1 className="display-1 fade-in">jobs</h1>
               ) : value.star.length > 0 ? (
-                <h1 className="display-1 fade-in">starred</h1>
+                <h1 className="display-1 welcome fade-in">starred</h1>
               ) : (
-                <h1 className="display-1 fade-in">welcome!</h1>
+                <h1 className="display-1 welcome fade-in">welcome!</h1>
               )}
             </div>
           );

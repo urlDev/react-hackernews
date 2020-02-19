@@ -13,12 +13,12 @@ class Star extends Component {
               {value.star.length ? (
                 value.star.map(news => {
                   return (
-                    <div className="col-md-4 news" key={news.title}>
+                    <div className="col-md-4 news fade-out" key={news.title}>
                       <div className="card">
                         <div className="card-body">
                           <div className="top">
                             <a href={news.url} target="_blank" rel="noopener noreferrer">
-                              <h1>{news.title}</h1>
+                              <h1>{news.title.length >= 60 ? `${news.title.slice(0, 60)}...` : news.title}</h1>
                             </a>
                           </div>
 

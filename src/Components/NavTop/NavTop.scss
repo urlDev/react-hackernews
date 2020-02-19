@@ -8,6 +8,20 @@
                 width: 5rem;
             }
         }
+        &-toggler {
+            // height: 2em;
+            font-size: 3rem;
+            color: $red;
+            border: none;
+            transition: all 0.5s ease-in-out;
+            &:focus,
+            &:active {
+                outline: none !important;
+            }
+            // &:hover {
+            //     background: rgb(224, 224, 224);
+            // }
+        }
     }
     .nav {
         &-link {
@@ -23,8 +37,8 @@
             &:focus {
                 outline: none;
             }
-            &:first-child {
-                padding-top: 0;
+            &:last-child {
+                margin-right: 0;
             }
         }
     }

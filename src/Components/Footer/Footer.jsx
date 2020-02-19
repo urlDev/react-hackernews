@@ -18,6 +18,7 @@ class Footer extends Component {
                   onClick={() => {
                     value.getStoryIds();
                     value.clearVisible();
+                    value.onDifferentPage();
                   }}
                 >
                   <img

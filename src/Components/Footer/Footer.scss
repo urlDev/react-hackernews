@@ -13,3 +13,13 @@
         }
     }
 }
+
+@media (min-width: 300px) and (max-width:575.9px) {
+    .footer {
+        .navbar-brand {
+            .brandImage {
+                margin-left: 2rem;
+            }
+        }
+    }
+}

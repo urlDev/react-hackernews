@@ -28,10 +28,15 @@ class NewsProvider extends Component {
       //number of news that will be visible at first in homepage
       visible: 10,
       //starred news array
-      star: []
+      star: [],
+      onStar: false,
     };
   }
 
+
+//these are for ending subscription after fetching data.
+//so there wouldnt be any memory leaks. 
+//it only happened with storyIds, getall news.
   CancelToken = axios.CancelToken;
   source = this.CancelToken.source();
 
@@ -43,6 +48,9 @@ class NewsProvider extends Component {
     this.getStoryIds();
     // this.getAll();
     this.cleanState();
+    this.setState({
+      onStar: false
+    })
   }
 
   componentWillUnmount() {
@@ -50,7 +58,7 @@ class NewsProvider extends Component {
      this.abortController.abort();
   }
 
-  //cleans the states for movie lists so they wouldnt stack up
+  //cleans the states for news lists so they wouldnt stack up
   cleanState = () => {
     this.setState({
       // star:[],
@@ -63,12 +71,27 @@ class NewsProvider extends Component {
     });
   };
 
-  //clears the state of visible to go back to initial state of 10 movies
+  //clears the state of visible to go back to initial state of 10 news
   clearVisible = () => {
     this.setState({
       visible: 10
     });
   };
+
+
+//i didnt like how the social component shows on star component
+//so i wanted to check if user is in star page so i can make social components position absolute
+  onStarPage = () => {
+    this.setState({
+      onStar: true
+    })
+  }
+
+  onDifferentPage = () => {
+    this.setState({
+      onStar:false
+    })
+  }
 
   //first, we get all story data from state(they are ids)
   //then we iterate through them and fetch data for each id
@@ -91,17 +114,13 @@ class NewsProvider extends Component {
           throw (err);
         });
     });
-
-    // return axios.get(`${getUrl + id}.json`).then(({ data }) => {
-    //         if (this._isMounted) {
-    //           this.setState({
-    //             all: [...this.state.all, data]
-    //           }, () => console.log(this.state.all));
-    //         }
-    //       });
-
   };
 
+/***********************/
+
+//wanted to get images too but cors issues and rate limiting.
+
+/*******************************/
   // allImages: [ ...this.state.allImages,  `${data.images[0]}`]
   // getAllImages = () => {
   //   this.cleanState()
@@ -294,19 +313,21 @@ class NewsProvider extends Component {
     });
   };
 
+
+//in scriptbase project, i thought adding url only adds url. but in here, i learned that this way it add whole object elements
+//so now i can use whatever is inside that object.
   addFavorite = (url) => {
     const {star } = this.state;
     let copyStar = [...star];
-    // let eachMovie = {title:title, url:url};
     //if it doesnt include, add
     if (!star.includes(url)) {
       copyStar.push(url);
-      this.setState({ star: copyStar }, () => console.log(url));
+      this.setState({ star: copyStar });
       //if it includes, remove
       //https://stackoverflow.com/questions/5767325/how-do-i-remove-a-particular-element-from-an-array-in-javascript
     } else {
       copyStar = copyStar.filter(news => news !== url);
-      this.setState({ star: copyStar }, () => console.log(star));
+      this.setState({ star: copyStar });
     }
   };
 
@@ -324,7 +345,9 @@ class NewsProvider extends Component {
           loadMore: this.loadMore,
           clearVisible: this.clearVisible,
           addFavorite: this.addFavorite,
-          cleanState: this.cleanState
+          cleanState: this.cleanState,
+          onStarPage: this.onStarPage,
+          onDifferentPage: this.onDifferentPage
         }}
       >
         {this.props.children}

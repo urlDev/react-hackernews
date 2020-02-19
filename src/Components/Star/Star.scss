@@ -1,7 +1,7 @@
 @import "../../index.scss";
 .Star {
     // padding-bottom: 0rem;
-    min-height: 70vh;
+    min-height: 60vh;
     position: relative;
     top: -39vh;
     // left: 50%;
@@ -53,6 +53,57 @@
         transition: all 0.3s ease-in-out;
         &:hover {
             transform: scale(2);
+        }
+    }
+    .fade-out {
+        animation: fadeOut 0.5s ease-out;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@media (min-width: 300px) and (max-width:767.9px) {
+    .Star {
+        .news {
+            min-width: 9em;
+            width: calc(100% / 2);
+            padding-bottom: 1em;
+            padding: 0.5em;
+            &:nth-child(2n) {
+                .card {
+                    &-body {
+                        a {
+                            h1 {
+                                color: $white;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .card {
+            padding: 0.5rem;
+            &-body {
+                height: 15rem;
+                .top {
+                    height: 10rem;
+                    a {
+                        h1 {
+                            font-size: 1.5rem;
+                        }
+                    }
+                }
+            }
+        }
+        .fa-star {
+            margin-top: 1.5rem;
         }
     }
 }

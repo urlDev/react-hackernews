@@ -1,59 +1,105 @@
 @import "../../index.scss";
 .ShowHN {
     text-align: left;
-    .story {
-        padding: 1rem 2rem;
-        color: $black;
+    font-family: $montserrat;
+    font-size: 2em;
+    padding-left: 0;
+    padding-right: 0;
+    .news {
         display: inline-block;
-        min-width: 15em;
-        width: calc(100%/3);
-        &:nth-child(3n) {
-            padding-right: 0
-        }
+        min-width: 5em;
+        width: calc(100% / 3);
+        padding-bottom: 0.5em;
+        padding-left: 0;
         &:nth-child(2n) {
             .card {
                 background: $black;
                 &-body {
-                    color: $red;
-                    .top {
+                    a {
                         color: $white;
                     }
-                }
-            }
-        }
-        .card {
-            border: 1px solid #ffd200;
-            padding: 1em;
-            &-body {
-                height: 20rem;
-                .top {
-                    height: 15rem;
-                    color: $black;
-                    font-size: 2.5rem;
-                }
-                .bottom {
-                    font-size: 1rem;
-                    &-link {
-                        a {
-                            color: $red;
+                    .bottom {
+                        &-link {
+                            a {
+                                color: $red;
+                            }
                         }
                     }
                 }
             }
         }
     }
+    .card {
+        border: 1px solid #ffd200;
+        padding: 0.5em;
+        &-body {
+            height: 20rem;
+            .top {
+                height: 15rem;
+                font-size: 2.5rem;
+                a {
+                    color: $black;
+                }
+            }
+            .bottom {
+                font-size: 1rem;
+                &-link {
+                    color: $red;
+                    a {
+                        color: $red;
+                    }
+                }
+            }
+        }
+    }
     .fa-star {
-        color: none;
-        margin: 0 2rem;
-        transition: all 0.3s ease-in;
+        margin-left: 1em;
+        transition: all 0.3s ease-in-out;
+        color: $red;
         &:hover {
             transform: scale(2);
         }
     }
-    .fa-star {
-        color: $red;
-    }
     .fade-in {
         animation: fadeIn 0.5s ease-in;
+    }
+}
+
+@media (min-width: 300px) and (max-width:991.9px) {
+    .ShowHN {
+        .news {
+            min-width: 9.5rem;
+            width: calc(100% / 2);
+            padding-bottom: 0.2em;
+            &:nth-child(2n) {
+                .card {
+                    &-body {
+                        a {
+                            h1 {
+                                color: $white;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .card {
+            padding: 0.5rem;
+            &-body {
+                .top {
+                    a {
+                        h1 {
+                            font-size: 1.4rem;
+                        }
+                    }
+                }
+                .bottom {
+                    font-size: 0.7rem;
+                }
+            }
+        }
+        .fa-star {
+            margin-top: 1.5rem;
+        }
     }
 }

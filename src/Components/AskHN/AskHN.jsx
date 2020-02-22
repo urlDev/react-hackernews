@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { NewsConsumer } from "../../Context";
 import Button from "../Button/Button";
 
-import "./AskHN.scss";
+
 
 class AskHN extends Component {
   render() {
@@ -10,7 +10,7 @@ class AskHN extends Component {
       <NewsConsumer>
         {value => {
           return (
-            <div className="AskHN">
+            <div className="results">
               {value.ask
                 ? value.ask.slice(0, value.visible).map(news => {
                     return (

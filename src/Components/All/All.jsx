@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { NewsConsumer } from "../../Context";
 import Button from "../Button/Button";
-import "./SearchResults.scss";
 
-class SearchResults extends Component {
+
+class All extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,7 +16,7 @@ class SearchResults extends Component {
       <NewsConsumer>
         {value => {
           return (
-            <div className="SearchResults">
+            <div className="results">
               {value.all ? (
                 value.all.slice(0, value.visible).map(news => {
                   // const url = new URL(`${story.url}`);
@@ -99,4 +99,4 @@ class SearchResults extends Component {
   }
 }
 
-export default SearchResults;
+export default All;

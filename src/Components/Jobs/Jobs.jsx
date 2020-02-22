@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { NewsConsumer } from "../../Context";
 import Button from "../Button/Button";
 
-import "./Jobs.scss";
 
 class Jobs extends Component {
   render() {
@@ -10,7 +9,7 @@ class Jobs extends Component {
       <NewsConsumer>
         {value => {
           return (
-            <div className="Jobs">
+            <div className="results">
               {value.jobs
                 ? value.jobs.slice(0, value.visible).map(news => {
                     // const url = new URL(`${story.url}`);

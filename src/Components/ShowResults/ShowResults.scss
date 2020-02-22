@@ -1,5 +1,5 @@
 @import "../../index.scss";
-.verticalNav {
+.showResults {
     position: relative;
     top: -46vh;
     font-family: $montserrat;
@@ -8,7 +8,7 @@
 }
 
 @media (min-width: 300px) and (max-width:991.9px) {
-    .verticalNav {
+    .showResults {
         position: relative;
         top: -37vh;
         font-family: $montserrat;

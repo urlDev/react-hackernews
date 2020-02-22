@@ -51,3 +51,125 @@ code {
     background: $blue;
     border-radius: 0.5em;
 }
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+.results {
+    text-align: left;
+    font-family: $montserrat;
+    font-size: 2em;
+    padding-left: 0;
+    padding-right: 0;
+    .news {
+        display: inline-block;
+        min-width: 5em;
+        width: calc(100% / 3);
+        padding-bottom: 0.5em;
+        padding-left: 0;
+        &:nth-child(2n) {
+            .card {
+                background: $black;
+                &-body {
+                    a {
+                        color: $white;
+                    }
+                    .bottom {
+                        &-link {
+                            color: $white;
+                            a {
+                                color: $white;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .card {
+        border: 1px solid #ffd200;
+        padding: 0.5em;
+        &-body {
+            height: 20rem;
+            .top {
+                height: 15rem;
+                font-size: 2.5rem;
+                a {
+                    color: $black;
+                }
+            }
+            .bottom {
+                margin: 0.5rem 0;
+                font-size: 1rem;
+                &-link {
+                    color: $red;
+                    a {
+                        color: $red;
+                    }
+                }
+            }
+        }
+    }
+    .fa-star {
+        margin-right: 1em;
+        font-size: 2rem;
+        transition: all 0.3s ease-in-out;
+        color: $red;
+        &:hover {
+            transform: scale(2);
+        }
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@media (min-width: 300px) and (max-width:991.9px) {
+    .results {
+        .news {
+            min-width: 9.5rem;
+            width: calc(100% / 2);
+            padding-bottom: 0.2em;
+            &:nth-child(2n) {
+                .card {
+                    &-body {
+                        a {
+                            h1 {
+                                color: $white;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .card {
+            padding: 0.5rem;
+            &-body {
+                height: 17rem;
+                .top {
+                    height: 11rem;
+                    a {
+                        h1 {
+                            font-size: 1.4rem;
+                        }
+                    }
+                }
+                .bottom {
+                    // margin-top: 0;
+                    // margin-bottom: 1rem;
+                    font-size: 0.7rem;
+                }
+            }
+        }
+        .fa-star {
+            margin-bottom: 1rem;
+        }
+    }
+}

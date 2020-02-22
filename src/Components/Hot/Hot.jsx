@@ -2,15 +2,14 @@ import React, { Component } from "react";
 import { NewsConsumer } from "../../Context";
 import Button from "../Button/Button";
 
-import "./SearchResultsHot.scss";
 
-class SearchResultsHot extends Component {
+class Hot extends Component {
   render() {
     return (
       <NewsConsumer>
         {value => {
           return (
-            <div className="SearchResultsHot">
+            <div className="results">
               {value.hot
                 ? value.hot.slice(0, value.visible).map(news => {
                     // const url = new URL(`${story.url}`);
@@ -84,4 +83,4 @@ class SearchResultsHot extends Component {
   }
 }
 
-export default SearchResultsHot;
+export default Hot;

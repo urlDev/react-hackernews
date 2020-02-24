@@ -40,20 +40,38 @@
             &:last-child {
                 margin-right: 0;
             }
+            &:hover:first-child::after {
+                outline: none;
+            }
+            &:hover::after {
+                content: "";
+                display: block;
+                margin: 0.2em auto 0 auto;
+                outline: 1px solid $red;
+                transition: width 0.35s ease-in-out, opacity 0.35s ease-in-out;
+            }
         }
     }
     .clicked {
         color: $red !important;
         font-weight: bold;
-        transition: all 0.5s ease-in;
+        // transition: all 0.5s ease-in;
         // text-shadow: 1px 1px $blue;
         &:after {
             content: "";
-            background: $red;
-            height: 0.5rem;
-            width: 3rem;
-            margin-right: auto;
             display: block;
+            margin: 0.2em auto 0 auto;
+            outline: 1px solid $red;
+            transition: width 0.35s ease-in-out, opacity 0.35s ease-in-out;
         }
     }
 }
+
+
+/* this makes links width from 0 to 100% and opacity from 0 to 1 */
+
+//@media (min-width: 45em)
+// .navlist a.current:after, .navlist a:hover:after {
+//     opacity: 1;
+//     width: 100%;
+// }

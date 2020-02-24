@@ -34,21 +34,30 @@
             color: black !important;
             padding: 1em 0;
             transition: all 0.5s ease-in;
+            &::after {
+                content: "";
+                width: 0;
+                opacity: 0;
+                display: block;
+                margin: 0.2em auto 0 auto;
+                outline: 1px solid $red;
+                transition: width 0.35s ease-in-out, opacity 0.35s ease-in-out;
+            }
             &:focus {
                 outline: none;
             }
             &:last-child {
                 margin-right: 0;
             }
-            &:hover:first-child::after {
+            &:first-child::after {
                 outline: none;
             }
+            //after pseudo element will be making opacity and width as 0.
+            //and when you hover, they will have width 100%, opacity 1
+            //so it will look like the after elements will appear nicely
             &:hover::after {
-                content: "";
-                display: block;
-                margin: 0.2em auto 0 auto;
-                outline: 1px solid $red;
-                transition: width 0.35s ease-in-out, opacity 0.35s ease-in-out;
+                opacity: 1;
+                width: 100%;
             }
         }
     }
@@ -59,6 +68,8 @@
         // text-shadow: 1px 1px $blue;
         &:after {
             content: "";
+            width: 100%;
+            opacity: 1;
             display: block;
             margin: 0.2em auto 0 auto;
             outline: 1px solid $red;
@@ -66,12 +77,3 @@
         }
     }
 }
-
-
-/* this makes links width from 0 to 100% and opacity from 0 to 1 */
-
-//@media (min-width: 45em)
-// .navlist a.current:after, .navlist a:hover:after {
-//     opacity: 1;
-//     width: 100%;
-// }

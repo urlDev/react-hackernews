@@ -27,7 +27,8 @@ class Hero extends Component {
               ) : value.star.length > 0 ? (
                 <h1 className="display-1 welcome fade-in">starred</h1>
               ) : (
-                <h1 className="display-1 welcome fade-in">welcome!</h1>
+                // <h1 className="display-1 welcome fade-in"> welcome!</h1>
+                <></>
               )}
             </div>
           );

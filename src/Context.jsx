@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { Component, createContext } from "react";
 import axios from "axios";
 import { Persist } from "react-persist";
 
-const NewsContext = React.createContext();
+export const NewsContext = createContext();
 
 const baseUrl = `https://hacker-news.firebaseio.com/v0/`;
 const newStoriesUrl = `${baseUrl}newstories.json`;
@@ -12,7 +12,7 @@ const showStoriesUrl = `${baseUrl}showstories.json`;
 const jobStoriesUrl = `${baseUrl}jobstories.json`;
 const getUrl = `${baseUrl}item/`;
 
-class NewsProvider extends Component {
+class NewsContextProvider extends Component {
   _isMounted = false;
 
   constructor(props) {
@@ -44,9 +44,7 @@ class NewsProvider extends Component {
 
   componentDidMount() {
     this._isMounted = true;
-    // this.getTopIds();
     this.getStoryIds();
-    // this.getAll();
     this.cleanState();
     this.setState({
       onStar: false
@@ -55,7 +53,7 @@ class NewsProvider extends Component {
 
   componentWillUnmount() {
     this._isMounted = false;
-     this.abortController.abort();
+    this.abortController.abort();
   }
 
   //cleans the states for news lists so they wouldnt stack up
@@ -362,7 +360,5 @@ class NewsProvider extends Component {
   }
 }
 
-//Variable for state consumers
-const NewsConsumer = NewsContext.Consumer;
 
-export { NewsProvider, NewsConsumer };
+export default NewsContextProvider;

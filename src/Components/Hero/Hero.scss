@@ -1,31 +1,24 @@
 @import "../../index.scss";
-.hero {
-    background: #ffd200;
-    height: 93vh;
-    position: relative;
-    .display-1 {
-        font-size: 25rem;
-        font-family: "Gilroy";
-        position: absolute;
-        top: 10%;
-        left: 0%;
-    }
-    .fade-in {
-        animation: fadeIn 0.5s ease-in;
-    }
+.display-1 {
+    font-size: 25rem;
+    font-family: "Gilroy";
+    position: absolute;
+    top: 10%;
+    left: 0%;
 }
 
-@media (min-width: 300px) and (max-width:991.9px) {
-    .hero {
-        height: 70vh;
-        .display-1 {
-            font-size: 15rem;
-            top: 20%;
-            left: 7%;
-        }
-        .welcome {
-            font-size: 7rem;
-            top: 25%;
-        }
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@media (min-width: 300px) and (max-width: 991.9px) {
+    .display-1 {
+        font-size: 15rem;
+        top: 20%;
+        left: 7%;
+    }
+    .welcome {
+        font-size: 7rem;
+        top: 25%;
     }
 }

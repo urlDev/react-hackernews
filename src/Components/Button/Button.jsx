@@ -1,13 +1,14 @@
 import React, { useContext } from "react";
 import { NewsContext } from "../../Context";
-import "./Button.scss";
+
+import { LoadMore } from "./Button.styles.jsx";
 
 const Button = () => {
   const { loadMore } = useContext(NewsContext);
   return (
-    <button onClick={loadMore} type="button" className="load-more">
+    <LoadMore onClick={loadMore} type="button">
       Load more
-    </button>
+    </LoadMore>
   );
 };
 

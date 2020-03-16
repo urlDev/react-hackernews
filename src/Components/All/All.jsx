@@ -15,6 +15,7 @@ const All = () => {
             return l;
           };
           const l = getLocation(`${news.url}`);
+          
 
           return (
             <div className="col-md-4 news fade-in" key={news.title}>

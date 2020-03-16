@@ -13,8 +13,6 @@ const jobStoriesUrl = `${baseUrl}jobstories.json`;
 const getUrl = `${baseUrl}item/`;
 
 class NewsContextProvider extends Component {
-  _isMounted = false;
-
   constructor(props) {
     super(props);
     this.state = {
@@ -29,30 +27,27 @@ class NewsContextProvider extends Component {
       visible: 10,
       //starred news array
       star: [],
-      onStar: false,
+      onStar: false
     };
   }
 
-
-//these are for ending subscription after fetching data.
-//so there wouldnt be any memory leaks. 
-//it only happened with storyIds, getall news.
+  //these are for ending subscription after fetching data.
+  //so there wouldnt be any memory leaks.
+  //it only happened with storyIds, getall news.
   CancelToken = axios.CancelToken;
   source = this.CancelToken.source();
 
   abortController = new AbortController();
 
   componentDidMount() {
-    this._isMounted = true;
     this.getStoryIds();
     this.cleanState();
     this.setState({
       onStar: false
-    })
+    });
   }
 
   componentWillUnmount() {
-    this._isMounted = false;
     this.abortController.abort();
   }
 
@@ -76,20 +71,19 @@ class NewsContextProvider extends Component {
     });
   };
 
-
-//i didnt like how the social component shows on star component
-//so i wanted to check if user is in star page so i can make social components position absolute
+  //i didnt like how the social component shows on star component
+  //so i wanted to check if user is in star page so i can make social components position absolute
   onStarPage = () => {
     this.setState({
       onStar: true
-    })
-  }
+    });
+  };
 
   onDifferentPage = () => {
     this.setState({
-      onStar:false
-    })
-  }
+      onStar: false
+    });
+  };
 
   //first, we get all story data from state(they are ids)
   //then we iterate through them and fetch data for each id
@@ -99,26 +93,28 @@ class NewsContextProvider extends Component {
   getAll = () => {
     this.cleanState();
     this.state.id.slice(0, 50).map(id => {
-     return fetch(`${getUrl + id}.json`, { signal: this.abortController.signal })
+      return fetch(`${getUrl + id}.json`, {
+        signal: this.abortController.signal
+      })
         .then(results => results.json())
-        .then(data => 
+        .then(data =>
           this.setState({
-            all:[...this.state.all, data]
+            all: [...this.state.all, data]
           })
         )
         .catch(err => {
           console.log("err", err.name);
           if (err.name === "AbortError") return;
-          throw (err);
+          throw err;
         });
     });
   };
 
-/***********************/
+  /***********************/
 
-//wanted to get images too but cors issues and rate limiting.
+  //wanted to get images too but cors issues and rate limiting.
 
-/*******************************/
+  /*******************************/
   // allImages: [ ...this.state.allImages,  `${data.images[0]}`]
   // getAllImages = () => {
   //   this.cleanState()
@@ -137,11 +133,9 @@ class NewsContextProvider extends Component {
     this.cleanState();
     this.state.id.map(id => {
       return axios.get(`${getUrl + id}.json`).then(({ data }) => {
-        if (this._isMounted) {
-          this.setState({
-            ask: [...this.state.ask, data]
-          });
-        }
+        this.setState({
+          ask: [...this.state.ask, data]
+        });
       });
     });
   };
@@ -150,11 +144,9 @@ class NewsContextProvider extends Component {
     this.cleanState();
     this.state.id.map(id => {
       return axios.get(`${getUrl + id}.json`).then(({ data }) => {
-        if (this._isMounted) {
-          this.setState({
-            show: [...this.state.show, data]
-          });
-        }
+        this.setState({
+          show: [...this.state.show, data]
+        });
       });
     });
   };
@@ -163,11 +155,9 @@ class NewsContextProvider extends Component {
     this.cleanState();
     this.state.id.map(id => {
       return axios.get(`${getUrl + id}.json`).then(({ data }) => {
-        if (this._isMounted) {
-          this.setState({
-            hot: [...this.state.hot, data]
-          });
-        }
+        this.setState({
+          hot: [...this.state.hot, data]
+        });
       });
     });
   };
@@ -176,11 +166,9 @@ class NewsContextProvider extends Component {
     this.cleanState();
     this.state.id.map(id => {
       return axios.get(`${getUrl + id}.json`).then(({ data }) => {
-        if (this._isMounted) {
-          this.setState({
-            jobs: [...this.state.jobs, data]
-          });
-        }
+        this.setState({
+          jobs: [...this.state.jobs, data]
+        });
       });
     });
   };
@@ -190,17 +178,14 @@ class NewsContextProvider extends Component {
       .get(`${newStoriesUrl}`)
       //this will structure out only data part of the api, cleaner call
       .then(({ data }) => {
-        if (this._isMounted) {
-          this.setState(
-            {
-              id: data
-            },
-            () => {
-              this.getAll();
-              // this.getAllImages();
-            }
-          );
-        }
+        this.setState(
+          {
+            id: data
+          },
+          () => {
+            this.getAll();
+          }
+        );
       })
       .catch(error => {
         console.log(error);
@@ -215,16 +200,14 @@ class NewsContextProvider extends Component {
       .get(`${topStoriesUrl}`)
       //this will structure out only data part of the api, cleaner call
       .then(({ data }) => {
-        if (this._isMounted) {
-          this.setState(
-            {
-              id: data
-            },
-            () => {
-              this.getHot();
-            }
-          );
-        }
+        this.setState(
+          {
+            id: data
+          },
+          () => {
+            this.getHot();
+          }
+        );
       })
       .catch(error => {
         console.log(error);
@@ -239,16 +222,14 @@ class NewsContextProvider extends Component {
       .get(`${askStoriesUrl}`)
       //this will structure out only data part of the api, cleaner call
       .then(({ data }) => {
-        if (this._isMounted) {
-          this.setState(
-            {
-              id: data
-            },
-            () => {
-              this.getAsk();
-            }
-          );
-        }
+        this.setState(
+          {
+            id: data
+          },
+          () => {
+            this.getAsk();
+          }
+        );
       })
       .catch(error => {
         console.log(error);
@@ -263,16 +244,14 @@ class NewsContextProvider extends Component {
       .get(`${showStoriesUrl}`)
       //this will structure out only data part of the api, cleaner call
       .then(({ data }) => {
-        if (this._isMounted) {
-          this.setState(
-            {
-              id: data
-            },
-            () => {
-              this.getShow();
-            }
-          );
-        }
+        this.setState(
+          {
+            id: data
+          },
+          () => {
+            this.getShow();
+          }
+        );
       })
       .catch(error => {
         console.log(error);
@@ -287,17 +266,15 @@ class NewsContextProvider extends Component {
       .get(`${jobStoriesUrl}`)
       //this will structure out only data part of the api, cleaner call
       .then(({ data }) => {
-        if (this._isMounted) {
-          this.setState(
-            {
-              id: data
-            },
-            () => {
-              this.getJobs();
-              // this.getAllImages();
-            }
-          );
-        }
+        this.setState(
+          {
+            id: data
+          },
+          () => {
+            this.getJobs();
+            // this.getAllImages();
+          }
+        );
       })
       .catch(error => {
         console.log(error);
@@ -311,11 +288,10 @@ class NewsContextProvider extends Component {
     });
   };
 
-
-//in scriptbase project, i thought adding url only adds url. but in here, i learned that this way it add whole object elements
-//so now i can use whatever is inside that object.
-  addFavorite = (url) => {
-    const {star } = this.state;
+  //in scriptbase project, i thought adding url only adds url. but in here, i learned that this way it add whole object elements
+  //so now i can use whatever is inside that object.
+  addFavorite = url => {
+    const { star } = this.state;
     let copyStar = [...star];
     //if it doesnt include, add
     if (!star.includes(url)) {
@@ -359,6 +335,5 @@ class NewsContextProvider extends Component {
     );
   }
 }
-
 
 export default NewsContextProvider;

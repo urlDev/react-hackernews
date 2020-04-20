@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
+import React, {useContext} from "react";
 import { NewsContext } from "../../Context";
-import Button from "../Button/Button";
 
-const ShowHN = () => {
-  const { show, star, visible, addFavorite } = useContext(NewsContext);
+const DefaultNewsComponent = ({hacker}) => {
+  const { star, visible, addFavorite } = useContext(NewsContext);
+
   return (
-    <div className="results">
-      {show &&
-        show.slice(0, visible).map((news) => {
+    <>
+      {hacker &&
+        hacker.slice(0, visible).map((news) => {
           // const url = new URL(`${story.url}`);
           const getLocation = function (href) {
             const l = document.createElement("a");
@@ -65,10 +65,8 @@ const ShowHN = () => {
             </div>
           );
         })}
-      {/* if value visible is smaller than popular.length then add button */}
-      {visible < show.length && <Button />}
-    </div>
+    </>
   );
 };
 
-export default ShowHN;
+export default DefaultNewsComponent;

@@ -40,7 +40,7 @@ class NewsContextProvider extends Component {
   abortController = new AbortController();
 
   componentDidMount() {
-    this.getStoryIds();
+    this.getTopIds();
     this.cleanState();
     this.setState({
       onStar: false
@@ -92,7 +92,7 @@ class NewsContextProvider extends Component {
   //💪🏽
   getAll = () => {
     this.cleanState();
-    this.state.id.slice(0, 50).map(id => {
+    this.state.id && this.state.id.slice(0, 50).map(id => {
       return fetch(`${getUrl + id}.json`, {
         signal: this.abortController.signal
       })

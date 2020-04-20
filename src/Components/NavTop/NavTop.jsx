@@ -21,9 +21,9 @@ const NavTop = () => {
     ask,
     show,
     jobs,
-    star
+    star,
   } = useContext(NewsContext);
-  
+
   return (
     <div className="container navTop">
       <Navbar expand="lg">
@@ -54,7 +54,7 @@ const NavTop = () => {
                 cleanState();
                 clearVisible();
                 onStarPage();
-                console.log(all, hot, show, ask, jobs)
+                console.log(all, hot, show, ask, jobs);
               }}
               className="nav-link"
               to="/star"
@@ -67,17 +67,6 @@ const NavTop = () => {
             </Link>
             <Link
               to="/"
-              className={all.length > 0 ? "nav-link clicked" : "nav-link "}
-              onClick={() => {
-                getStoryIds();
-                clearVisible();
-                onDifferentPage();
-              }}
-            >
-              ALL
-            </Link>
-            <Link
-              to="/"
               className={hot.length > 0 ? "nav-link clicked" : "nav-link"}
               onClick={() => {
                 getTopIds();
@@ -87,6 +76,18 @@ const NavTop = () => {
             >
               HOT
             </Link>
+            <Link
+              to="/"
+              className={all.length > 0 ? "nav-link clicked" : "nav-link "}
+              onClick={() => {
+                getStoryIds();
+                clearVisible();
+                onDifferentPage();
+              }}
+            >
+              ALL
+            </Link>
+
             <Link
               to="/"
               className={show.length > 0 ? "nav-link clicked" : "nav-link"}
